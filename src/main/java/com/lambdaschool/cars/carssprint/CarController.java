@@ -22,6 +22,11 @@ public class CarController {
         this.carRepos = carRepos;
         this.rt = rt;
     }
+    @GetMapping("cars/id/{id}")
+    public List<Car> catById(@PathVariable Long id) {
+        return carRepos.findById(id).stream().collect(Collectors.toList());
+    }
+
     @PostMapping("/cars/upload")
     public List<Car> newCountry(@RequestBody List<Car> newCountries){
         return carRepos.saveAll(newCountries);
